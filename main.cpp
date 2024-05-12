@@ -1,16 +1,24 @@
-/**
- * Driver for starting movie store tests
- */
+/*------------Movie Project-----------------
+* -- This is the main.cpp file for the Movie Project Program
+* Authors: Chris Chen, Amy Vier.
+* 
+* Assumption to be made:
+* -- data files are hardcoded as "data4movies.txt", "data4customers.txt", and "data4command.txt"
+* 
+* 
+*/
 
 #include <iostream>
+#include "movie_store.h"
 
 using namespace std;
 
-// forward declaration, implementation in store_test.cpp
-void testAll();
+public int main() {
+	MovieStore store = MovieStore();
 
-int main() {
-  testAll();
-  cout << "Done." << endl;
-  return 0;
-}
+	store.readMovie("data4movies.txt");
+	store.readCustomer("data4customer.txt");
+	store.readCommand("data4command.txt");
+
+	return 0;
+};
