@@ -9,20 +9,11 @@
 
 using namespace std;
 
-class Drama {
+class Drama : public Movie
+{
 public:
-	void addToStock();
-	string Output();
-	bool isInStock();
-	bool checkOut();
-	bool Return();
-
-private:
-	string director;
-	string title;
-	int releaseYear;
-	map<char, Media> stock;
+	Drama(char mediaType, int stock, string director, string title,
+				int releaseYear);
 };
 
-#endif // 
-
+#endif
