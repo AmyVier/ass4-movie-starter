@@ -16,10 +16,10 @@
 
 using namespace std;
 
-class MovieFactory
+class MediaFactory
 {
 public:
-  void createDVD(int stock);
+  DVD createDVD(int stock);
 };
 
 #endif // MOVIEFACTORY_H

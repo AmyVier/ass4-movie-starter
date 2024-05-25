@@ -7,6 +7,7 @@ using namespace std;
 
 class Customer {
 public:
+	Customer(int id, string firstname, string lastname);
 	int getID();
 	string getFirstName();
 	string getLastName();

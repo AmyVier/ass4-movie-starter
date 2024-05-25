@@ -2,6 +2,7 @@
 #DEFINE CUSTOMER_MANAGER_H
 
 #include "Customer.h"
+#include "hashtable.h"
 #include <map>
 
 using namespace std;
@@ -9,11 +10,15 @@ using namespace std;
 class CustomerManager {
 public:
 	CustomerManager();
+	~CustomerManager();
 	bool isValid(int ID);
 	Customer getCustomer(int ID);
+	bool addCustomer(int id, string firstname, string lastname);
 
 
 private:
-	map<int, Customer> customers;
+	HashTable* CustomerList = new HashTable();
+
+
 };
 #endif

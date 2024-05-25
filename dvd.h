@@ -19,6 +19,10 @@ class DVD : public Media
 {
 public:
   DVD(int stock);
+  bool addTostock(int stk);
+  bool isInStock();
+  bool checkOut();
+  bool returnMovie();
 };
 
 #endif // DVD_H
