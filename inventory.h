@@ -9,29 +9,28 @@
 #ifndef INVENTORY_H
 #define INVENTORY_H
 
+#include <map>
 #include <string>
-#include "movie.h"
-#include "comedy.h"
-#include "classics.h"
-#include "drama.h"
-#include "media.h"
+#include <utility>
 #include <vector>
+#include "movie.h"
 
-using namespace std;
+class Inventory {
+ public:
+    // Default constructor
+    Inventory();
+    // Adds movie to inventory using type as identifier
+    bool AddMovie(const std::string& type, Movie* movie);
+    // Finds movie from type and title. Should this return a movie?
+    bool FindMovie(const std::string& type, const std::string& title);
+    //Unsure how to incorporate Media here
+    bool addToStock(const std::string& type, Movie* movie, Media mediaType,
+                    int stock);
+    void PrintInventory() const;
 
-class Inventory
-{
-public:
-   Inventory();
-   bool AddMovie(string type, Movie *m); // Change to pointer to handle polymorphism correctly.
-   bool FindMovie(string type, string title);
-   bool addToStock(string type, Movie *m, Media *mediaType, int stock); // Use pointer for Media too.
-   void Sort(string movieType);
-   void printInventory();
-
-private:
-   map<std::string, std::vector<Movie *>> inventory_;
-   using KeyValuePair = std::pair<std::string, std::vector<Movie *>>;
-   void PrintHelper(const std::string &type) const;
+ private:
+    std::map<std::string, std::vector<Movie*>> inventory_;
+    using KeyValuePair = std::pair<std::string, std::vector<Movie*>>;
+    void PrintHelper(const std::string& type) const;
 };
-#endif // INVENTORY_H
+#endif  // INVENTORY_H
