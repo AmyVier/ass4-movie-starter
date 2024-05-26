@@ -1,6 +1,6 @@
 #include "dvd.h"
 
-//constructor with stock provided
+// constructor with stock provided
 DVD::DVD(int stock)
 {
 	stock = stock;
@@ -22,7 +22,8 @@ bool DVD::isInStock()
 // deduct 1 stock item.
 bool DVD::checkOut()
 {
-	if (stock == 0) return false;
+	if (stock == 0)
+		return false;
 	stock--;
 	return true;
 }

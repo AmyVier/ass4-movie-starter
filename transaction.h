@@ -6,17 +6,16 @@
 
 using namespace std;
 
-class Transaction {
+class Transaction
+{
 public:
-	Transaction(string action, int ID, string movieType, Movie movie);
+	Transaction(string action, int ID, string movieType, Movie *movie);
 	string Output();
 
 private:
 	string action;
 	int CustomerID;
 	string type;
-	Movie movie;
-
+	Movie *movie;
 };
 #endif // !TRANSACTION_H
-

@@ -17,7 +17,7 @@ using namespace std;
 class Media
 {
 public:
-  virtual bool addTostock();
+  virtual bool addTostock(int stk);
   virtual bool isInStock();
   virtual bool checkOut();
   virtual bool returnMovie();
