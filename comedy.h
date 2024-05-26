@@ -20,7 +20,11 @@ class Comedy : public Movie
 {
 public:
   Comedy(char mediaType, int stock, string director, string title,
-         int releaseYear);
+         int releaseYear) : Movie(mediaType, stock, director, title, releaseYear){};
+
+  bool operator<(const Comedy &) const;
+  bool operator>(const Comedy &) const;
+  bool operator==(const Comedy &) const;
 };
 
 #endif // COMEDY_H

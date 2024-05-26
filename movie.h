@@ -14,22 +14,26 @@
 #include <string>
 #include <map>
 #include "media.h"
+#include "mediaFactory.h"
 
 using namespace std;
 
 class Movie
 {
 public:
-  virtual bool addTostock();
-  virtual bool isInStock();
-  virtual bool checkOut();
-  virtual bool returnMovie();
+  Movie(char mediaType, int stock, string director, string title,
+        int releaseYear);
+  virtual bool addTostock(char mediaType, int stock);
+  virtual bool isInStock(char mediaType);
+  virtual bool checkOut(char mediaType);
+  virtual bool returnMovie(char mediaType);
 
 protected:
   string director;
   string title;
   int releaseYear;
   map<char, Media> allStock;
+  MediaFactory mediaFactory = MediaFactory();
 };
 
 #endif // MOVIE_H

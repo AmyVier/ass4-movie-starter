@@ -21,12 +21,12 @@ using namespace std;
 class MovieFactory
 {
 public:
-  void createComedy(char mediaType, int stock, string director, string title,
+  Comedy createComedy(char mediaType, int stock, string director, string title,
+                      int releaseYear);
+  Drama createDrama(char mediaType, int stock, string director, string title,
                     int releaseYear);
-  void createDrama(char mediaType, int stock, string director, string title,
-                   int releaseYear);
-  void createClassics(char mediaType, int stock, string director, string title,
-                      string majorActor, int releaseYear, int releaseMonth);
+  Classics createClassics(char mediaType, int stock, string director, string title,
+                          string majorActor, int releaseYear, int releaseMonth);
 };
 
 #endif // MOVIEFACTORY_H

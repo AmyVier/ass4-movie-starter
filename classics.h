@@ -21,7 +21,15 @@ class Classics : public Movie
 {
 public:
   Classics(char mediaType, int stock, string director, string title,
-           string majorActor, int releaseYear, int releaseMonth);
+           string majorActor, int releaseYear, int releaseMonth) : Movie(mediaType, stock, director, title, releaseYear)
+  {
+    this->majorActor = majorActor;
+    this->releaseMonth = releaseMonth;
+  };
+
+  bool operator<(const Classics &) const;
+  bool operator>(const Classics &) const;
+  bool operator==(const Classics &) const;
 
 private:
   string majorActor;
