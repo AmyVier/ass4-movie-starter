@@ -1,29 +1,32 @@
+/**
+ *  Inventory class. Stores movies
+ *
+ * @author Kyle Ricks
+ * @date 25 May 2024
+ *
+ */
+
 #ifndef INVENTORY_H
 #define INVENTORY_H
 
 #include <string>
-#include "movie.h"
-#include "comedy.h"
-#include "classics.h"
-#include "drama.h"
-#include "media";
 #include <vector>
-
-using namespace std;
+#include "movie.h"
 
 class Inventory {
-public:
-	bool AddMovie(string type, movie m);
-	bool FindMovie(string type, string title);
-	bool addToStock(string type, movie m, Media mediaType, int stock);
-	void Sort(string movieType);
-	void printInventory();
+ public:
+    // Default constructor
+    Inventory();
 
-private:
-	vector<Comedy> comedyMovies;
-	vector<Classics> classicsMovies;
-	vector<Drama> dramaMovies;
+    bool AddMovie(const std::string& type, Movie* movie);
+    bool FindMovie(const std::string& type, const std::string& title);
+    // Unsure what method does. Will implement later
+    bool addToStock(std::string type, Movie* movie, Media mediaType, int stock);
+    void PrintInventory() const;
 
+ private:
+    map<std::string, std::vector<Movie*>> inventory_;
+    using KeyValuePair = std::pair<std::string, std::vector<Movie*>>;
+    void PrintHelper(const std::string& type) const;
 };
-#endif // !INVENTORY_H
-
+#endif  // INVENTORY_H
