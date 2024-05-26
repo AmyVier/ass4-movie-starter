@@ -35,6 +35,20 @@ bool Inventory::FindMovie(const std::string& type, const std::string& title) {
     return false;
 }
 
+bool Inventory::addToStock(const std::string& type, Movie* movie,
+                           Media mediaType, int stock) {
+    if (inventory_.find(type) != inventory_.end()) {
+        const std::vector<Movie*> temp_vector = inventory_.find(type)->second;
+        for (Movie* temp : temp_vector) {
+            if (temp == movie) {
+                temp->addTostock('D', stock);
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 void Inventory::PrintInventory() const {
     PrintHelper("F");
     PrintHelper("D");
