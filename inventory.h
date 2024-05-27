@@ -17,7 +17,7 @@ class Inventory {
     bool FindMovie(const std::string& type, const std::string& title);
     //Unsure how to incorporate Media here
     bool addToStock(const std::string& type, const Movie* movie,
-                    Media mediaType, const int& stock);
+                    const int& stock);
     void PrintInventory() const;
 
  private:
