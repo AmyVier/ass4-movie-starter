@@ -3,6 +3,7 @@
 #include "transaction_manager.h"
 #include "customer_manager.h"
 #include "inventory.h"
+#include "movieFactory.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -15,6 +16,7 @@ MovieStore::MovieStore() {
     inventory = new Inventory();
     customerManager = new CustomerManager();
     transactionManager = new TransactionManager();
+    movieFactory = new MovieFactory();
 }
 
 void MovieStore::readMovie(string filename) {
@@ -26,30 +28,32 @@ void MovieStore::readMovie(string filename) {
     while (getline(file, line)) {
         stringstream ss(line);
         ss >> type >> mediaType >> stock;
-        if (type == "F" || type == "D") {
+        if (type == "F") {
             getline(ss, director, ',');
             getline(ss, title, ',');
             ss >> year;
-            if (type == "F") {
-                // Add comedy
-               inventory->AddMovie("Comedy", new Comedy(mediaType, stock, director, title, year));
-            } else {
-                // Add drama
-                inventory->AddMovie("Drama", new Drama(mediaType, stock, director, title, year));
-            }
+            Movie* movie = movieFactory->createComedy(mediaType, stock, director, title, year);
+            inventory->AddMovie("Comedy", movie);
+        } else if (type == "D") {
+            getline(ss, director, ',');
+            getline(ss, title, ',');
+            ss >> year;
+            Movie* movie = movieFactory->createDrama(mediaType, stock, director, title, year);
+            inventory->AddMovie("Drama", movie);
         } else if (type == "C") {
             getline(ss, director, ',');
             getline(ss, title, ',');
             getline(ss, actor, ' ');
             ss >> month >> year;
-            // Add classic
-            inventory->AddMovie("Classics", new Classics(mediaType, stock, director, title, actor, year, month));
+            Movie* movie = movieFactory->createClassics(mediaType, stock, director, title, actor, year, month);
+            inventory->AddMovie("Classics", movie);
         } else {
             cout << "Invalid movie type encountered: " << type << endl;
         }
     }
     file.close();
 }
+
 
 void MovieStore::readCustomer(string filename) {
     ifstream file(filename);
