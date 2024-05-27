@@ -13,7 +13,6 @@
 
 #include <string>
 #include <map>
-#include "media.h"
 #include "mediaFactory.h"
 
 using namespace std;
@@ -36,7 +35,6 @@ protected:
   string title;
   int releaseYear;
   map<char, Media> allStock;
-  MediaFactory mediaFactory = MediaFactory();
 };
 
 #endif // MOVIE_H

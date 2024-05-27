@@ -19,7 +19,7 @@ using namespace std;
 class MediaFactory
 {
 public:
-  DVD createDVD(int stock);
+  static DVD createDVD(int stock);
 };
 
 #endif // MOVIEFACTORY_H
