@@ -3,6 +3,14 @@
 
 using namespace std;
 
+ostream &operator<<(ostream &out, const Movie &movie)
+{
+
+  out << movie.title;
+
+  return out;
+}
+
 Movie::Movie(char mediaType, int stock, string director, string title,
              int releaseYear)
 {
@@ -37,6 +45,11 @@ bool Movie::isInStock(char mediaType)
   }
 
   return false;
+}
+
+string Movie::getTitle()
+{
+  return this->title;
 }
 
 bool Movie::checkOut(char mediaType)
