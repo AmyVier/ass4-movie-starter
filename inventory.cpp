@@ -15,9 +15,9 @@ Inventory::Inventory() {
 
 bool Inventory::AddMovie(const std::string& type, Movie* movie) {
     if (inventory_.find(type) != inventory_.end()) {
-        std::vector<Movie*> temp_vector = inventory_.find(type)->second;
-        temp_vector.push_back(movie);
-        std::sort(temp_vector.begin(), temp_vector.end());
+        inventory_.find(type)->second.push_back(movie);
+        std::sort(inventory_.find(type)->second.begin(),
+                  inventory_.find(type)->second.end());
         return true;
     }
     return false;
@@ -25,8 +25,7 @@ bool Inventory::AddMovie(const std::string& type, Movie* movie) {
 
 bool Inventory::FindMovie(const std::string& type, const std::string& title) {
     if (inventory_.find(type) != inventory_.end()) {
-        const std::vector<Movie*> temp_vector = inventory_.find(type)->second;
-        for (Movie* temp : temp_vector) {
+        for (Movie* temp : inventory_.find(type)->second) {
             if (temp->getTitle() == title) {
                 return true;
             }
@@ -38,8 +37,7 @@ bool Inventory::FindMovie(const std::string& type, const std::string& title) {
 bool Inventory::addToStock(const std::string& type, const Movie* movie,
                            const int& stock) {
     if (inventory_.find(type) != inventory_.end()) {
-        const std::vector<Movie*> temp_vector = inventory_.find(type)->second;
-        for (Movie* temp : temp_vector) {
+        for (Movie* temp : inventory_.find(type)->second) {
             if (temp == movie) {
                 temp->addTostock('D', stock);
                 return true;
@@ -56,8 +54,7 @@ void Inventory::PrintInventory() const {
 }
 
 void Inventory::PrintHelper(const std::string& type) const {
-    const std::vector<Movie*> temp_vector = inventory_.find(type)->second;
-    for (const Movie* movie : temp_vector) {
+    for (const Movie* movie : inventory_.find(type)->second) {
         std::cout << *(movie) << "\n";
     }
 }
