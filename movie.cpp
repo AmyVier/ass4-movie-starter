@@ -20,11 +20,11 @@ Movie::Movie(char mediaType, int stock, string director, string title,
 
   if (allStock.count(mediaType))
   {
-    allStock[mediaType].addTostock(stock);
+    allStock[mediaType]->addTostock(stock);
   }
   else if (mediaType == 'D')
   {
-    DVD newDVD = MediaFactory.createDVD(stock);
+    DVD *newDVD = MediaFactory::createDVD(stock);
     allStock.insert(make_pair(mediaType, newDVD));
   }
 }
@@ -33,13 +33,13 @@ bool Movie::addTostock(char mediaType, int stock)
 {
   if (allStock.count(mediaType))
   {
-    allStock[mediaType].addTostock(stock);
+    allStock[mediaType]->addTostock(stock);
   }
 }
 
 bool Movie::isInStock(char mediaType)
 {
-  if (allStock.count(mediaType) && allStock[mediaType].isInStock())
+  if (allStock.count(mediaType) && allStock[mediaType]->isInStock())
   {
     return true;
   }
@@ -54,9 +54,9 @@ string Movie::getTitle()
 
 bool Movie::checkOut(char mediaType)
 {
-  if (allStock.count(mediaType) && allStock[mediaType].isInStock())
+  if (allStock.count(mediaType) && allStock[mediaType]->isInStock())
   {
-    allStock[mediaType].checkOut();
+    allStock[mediaType]->checkOut();
     return true;
   }
 
@@ -67,7 +67,7 @@ bool Movie::returnMovie(char mediaType)
 {
   if (allStock.count(mediaType))
   {
-    allStock[mediaType].returnMovie();
+    allStock[mediaType]->returnMovie();
     return true;
   }
 

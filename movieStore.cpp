@@ -1,5 +1,6 @@
 
 #include "movie_store.h"
+#include "movieFactory.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -8,54 +9,66 @@
 
 using namespace std;
 
-MovieStore::MovieStore() {
+MovieStore::MovieStore()
+{
     inventory = new Inventory();
     customerManager = new CustomerManager();
     transactionManager = new TransactionManager();
 }
 
-void MovieStore::readMovie(string filename) {
+void MovieStore::readMovie(string filename)
+{
     ifstream file(filename);
     string line, type, director, title, actor;
     int stock, year, month;
     char mediaType;
 
-    while (getline(file, line)) {
+    while (getline(file, line))
+    {
         stringstream ss(line);
         ss >> type >> mediaType >> stock;
-        if (type == "F") {
+        if (type == "F")
+        {
             getline(ss, director, ',');
             getline(ss, title, ',');
             ss >> year;
-            Movie* movie = MovieFactory.createComedy(mediaType, stock, director, title, year);
+
+            Movie *movie = MovieFactory::createComedy(mediaType, stock, director, title, year);
             inventory->AddMovie("Comedy", movie);
-        } else if (type == "D") {
+        }
+        else if (type == "D")
+        {
             getline(ss, director, ',');
             getline(ss, title, ',');
             ss >> year;
-            Movie* movie = MovieFactory.createDrama(mediaType, stock, director, title, year);
+            Movie *movie = MovieFactory::createDrama(mediaType, stock, director, title, year);
             inventory->AddMovie("Drama", movie);
-        } else if (type == "C") {
+        }
+        else if (type == "C")
+        {
             getline(ss, director, ',');
             getline(ss, title, ',');
             getline(ss, actor, ' ');
             ss >> month >> year;
-            Movie* movie = MovieFactory.createClassics(mediaType, stock, director, title, actor, year, month);
+            Movie *movie = MovieFactory::createClassics(mediaType, stock, director, title, actor, year, month);
             inventory->AddMovie("Classics", movie);
-        } else {
+        }
+        else
+        {
             cout << "Invalid movie type encountered: " << type << endl;
         }
     }
     file.close();
 }
 
-
-void MovieStore::readCustomer(string filename) {
+void MovieStore::readCustomer(string filename)
+{
     ifstream file(filename);
     string line, lastName, firstName;
     int ID;
 
-    while (getline(file, line)) {
+    while (getline(file, line))
+    {
         stringstream ss(line);
         ss >> ID >> lastName >> firstName;
         // Add customer logic
@@ -64,44 +77,59 @@ void MovieStore::readCustomer(string filename) {
     file.close();
 }
 
-void MovieStore::readCommand(string filename) {
+void MovieStore::readCommand(string filename)
+{
     ifstream file(filename);
     string line, commandType, movieType;
     int customerID, year, month;
     string title, actor, director;
 
-    while (getline(file, line)) {
+    while (getline(file, line))
+    {
         stringstream ss(line);
         ss >> commandType;
-        if (commandType == "B" || commandType == "R") {
+        if (commandType == "B" || commandType == "R")
+        {
             ss >> customerID >> movieType;
-            if (movieType == "F") {
+            if (movieType == "F")
+            {
                 getline(ss, title, ',');
                 ss >> year;
                 // Borrow or return logic for comedy
-            } else if (movieType == "D") {
+            }
+            else if (movieType == "D")
+            {
                 getline(ss, director, ',');
                 getline(ss, title);
                 // Borrow or return logic for drama
-            } else if (movieType == "C") {
+            }
+            else if (movieType == "C")
+            {
                 ss >> month >> year >> actor;
                 // Borrow or return logic for classics
             }
-        } else if (commandType == "I") {
+        }
+        else if (commandType == "I")
+        {
             // Inventory display logic
-            inventory->printInventory();
-        } else if (commandType == "H") {
+            inventory->PrintInventory();
+        }
+        else if (commandType == "H")
+        {
             ss >> customerID;
             // History display logic
             cout << transactionManager->printTransaction(customerID);
-        } else {
+        }
+        else
+        {
             cout << "Invalid command encountered: " << commandType << endl;
         }
     }
     file.close();
 }
 
-MovieStore::~MovieStore() {
+MovieStore::~MovieStore()
+{
     delete inventory;
     delete customerManager;
     delete transactionManager;

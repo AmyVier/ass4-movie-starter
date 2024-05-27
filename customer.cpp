@@ -2,21 +2,25 @@
 #include "customer.h"
 
 // customer constructor with information provided
-Customer::Customer(int id, string firstname, string lastname) :ID(id), firstName(firstname), lastName(lastname) {}
+Customer::Customer(int id, string firstname, string lastname) : ID(id), firstName(firstname), lastName(lastname) {}
 
-int Customer::getID() const {
+int Customer::getID() const
+{
 	return ID;
 }
 
-string Customer::getFirstName() const {
+string Customer::getFirstName() const
+{
 	return firstName;
 }
 
-string Customer::getLastName() const {
+string Customer::getLastName() const
+{
 	return lastName;
 }
 
 // output format may need to adjust as needed.
-string Customer::getAllInfo() const {
-	return getID + " " + getFirstName() + " " + getLastName();
+string Customer::getAllInfo() const
+{
+	return getID() + " " + getFirstName() + " " + getLastName();
 }

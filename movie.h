@@ -14,6 +14,7 @@
 #include <string>
 #include <map>
 #include "mediaFactory.h"
+#include "media.h"
 
 using namespace std;
 
@@ -34,7 +35,7 @@ protected:
   string director;
   string title;
   int releaseYear;
-  map<char, Media> allStock;
+  map<char, Media *> allStock;
 };
 
 #endif // MOVIE_H
