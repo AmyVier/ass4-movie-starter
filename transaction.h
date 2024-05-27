@@ -18,4 +18,5 @@ private:
 	string type;
 	Movie *movie;
 };
+
 #endif // !TRANSACTION_H

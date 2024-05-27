@@ -8,9 +8,6 @@
  * A movie has at lease one media type (DVD, blue-ray, etc.) with a corrosponding stock
  */
 
-#ifndef MOVIEFACTORY_H
-#define MOVIEFACTORY_H
-
 #include <string>
 #include "comedy.h"
 #include "classics.h"
@@ -37,5 +34,3 @@ public:
         return new Classics(mediaType, stock, director, title, majorActor, releaseYear, releaseMonth);
     }
 };
-
-#endif // MOVIEFACTORY_H

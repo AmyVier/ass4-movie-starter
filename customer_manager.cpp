@@ -18,13 +18,13 @@ bool CustomerManager::isValid(int ID) {
 }
 
 //if not found, return nullptr;
-Customer CustomerManager::getCustomer(int ID) {
+Customer *CustomerManager::getCustomer(int ID) {
 	return CustomerList->get(ID);
 }
 
 //using hash function:
 bool CustomerManager::addCustomer(int id, string firstname, string lastname) {
-	if (CustomerList->get(id).getID() != id) {
+	if ((*(CustomerList->get(id))).getID() != id) {
 		Customer c = Customer(id, firstname, lastname);
 		CustomerList->insert(id, c);
 	}

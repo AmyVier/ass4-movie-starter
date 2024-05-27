@@ -5,9 +5,11 @@
 
 using namespace std;
 
-class HashTable {
+class HashTable
+{
 private:
-  struct CustomerProfile {
+  struct CustomerProfile
+  {
     int id;
     Customer customerLink;
     CustomerProfile *next;
@@ -29,6 +31,6 @@ public:
   void insert(int id, Customer customer);
 
   // Getting customer with id as key
-  Customer get(int key);
+  Customer *get(int key);
 };
 #endif
