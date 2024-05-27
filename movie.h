@@ -21,12 +21,15 @@ using namespace std;
 class Movie
 {
 public:
+  friend ostream &operator<<(ostream &out, const Movie &movie);
+
   Movie(char mediaType, int stock, string director, string title,
         int releaseYear);
   virtual bool addTostock(char mediaType, int stock);
   virtual bool isInStock(char mediaType);
   virtual bool checkOut(char mediaType);
   virtual bool returnMovie(char mediaType);
+  virtual string getTitle();
 
 protected:
   string director;
