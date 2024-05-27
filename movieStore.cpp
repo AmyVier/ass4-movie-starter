@@ -1,9 +1,5 @@
 
 #include "movie_store.h"
-#include "transaction_manager.h"
-#include "customer_manager.h"
-#include "inventory.h"
-#include "movieFactory.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -16,7 +12,6 @@ MovieStore::MovieStore() {
     inventory = new Inventory();
     customerManager = new CustomerManager();
     transactionManager = new TransactionManager();
-    movieFactory = new MovieFactory();
 }
 
 void MovieStore::readMovie(string filename) {
@@ -32,20 +27,20 @@ void MovieStore::readMovie(string filename) {
             getline(ss, director, ',');
             getline(ss, title, ',');
             ss >> year;
-            Movie* movie = movieFactory->createComedy(mediaType, stock, director, title, year);
+            Movie* movie = MovieFactory.createComedy(mediaType, stock, director, title, year);
             inventory->AddMovie("Comedy", movie);
         } else if (type == "D") {
             getline(ss, director, ',');
             getline(ss, title, ',');
             ss >> year;
-            Movie* movie = movieFactory->createDrama(mediaType, stock, director, title, year);
+            Movie* movie = MovieFactory.createDrama(mediaType, stock, director, title, year);
             inventory->AddMovie("Drama", movie);
         } else if (type == "C") {
             getline(ss, director, ',');
             getline(ss, title, ',');
             getline(ss, actor, ' ');
             ss >> month >> year;
-            Movie* movie = movieFactory->createClassics(mediaType, stock, director, title, actor, year, month);
+            Movie* movie = MovieFactory.createClassics(mediaType, stock, director, title, actor, year, month);
             inventory->AddMovie("Classics", movie);
         } else {
             cout << "Invalid movie type encountered: " << type << endl;

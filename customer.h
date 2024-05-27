@@ -7,11 +7,12 @@ using namespace std;
 
 class Customer {
 public:
+	Customer() = default;
 	Customer(int id, string firstname, string lastname);
-	int getID();
-	string getFirstName();
-	string getLastName();
-	string getAllInfo();
+	int getID() const;
+	string getFirstName() const;
+	string getLastName() const;
+	string getAllInfo() const;
 
 private:
 	int ID;

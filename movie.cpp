@@ -24,7 +24,7 @@ Movie::Movie(char mediaType, int stock, string director, string title,
   }
   else if (mediaType == 'D')
   {
-    DVD newDVD = mediaFactory.createDVD(stock);
+    DVD newDVD = MediaFactory.createDVD(stock);
     allStock.insert(make_pair(mediaType, newDVD));
   }
 }

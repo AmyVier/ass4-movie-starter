@@ -1,5 +1,5 @@
 #include "hashtable.h"
-#include "Customer.h"
+#include "customer.h"
 #include <vector>
 
 // Default Class constructor

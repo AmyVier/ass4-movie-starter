@@ -11,7 +11,7 @@ private:
     int id;
     Customer customerLink;
     CustomerProfile *next;
-    CustomerProfile() : id(0), next(nullptr){};
+    CustomerProfile() : id(0), customerLink(), next(nullptr){};
     // ~CustomerProfile() :
   };
   static const int TABLE_SIZE = 12;

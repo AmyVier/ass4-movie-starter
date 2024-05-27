@@ -22,7 +22,6 @@ private:
     Inventory* inventory;            // Declaration for inventory.
     CustomerManager* customerManager;
     TransactionManager* transactionManager;
-    MovieFactory* movieFactory;
 	bool Borrow(); //Will need further implementation in the parameter
 	bool Return(); //Will need further implementation in the parameter
 	void Inventory();

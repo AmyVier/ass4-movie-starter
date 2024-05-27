@@ -1,7 +1,7 @@
 #ifndef CUSTOMER_MANAGER_H
-#DEFINE CUSTOMER_MANAGER_H
+#define CUSTOMER_MANAGER_H
 
-#include "Customer.h"
+#include "customer.h"
 #include "hashtable.h"
 #include <map>
 
