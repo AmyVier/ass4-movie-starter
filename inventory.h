@@ -16,8 +16,8 @@ class Inventory {
     // Finds movie from type and title. Should this return a movie?
     bool FindMovie(const std::string& type, const std::string& title);
     //Unsure how to incorporate Media here
-    bool addToStock(const std::string& type, Movie* movie, Media mediaType,
-                    int stock);
+    bool addToStock(const std::string& type, const Movie* movie,
+                    Media mediaType, const int& stock);
     void PrintInventory() const;
 
  private:
