@@ -10,6 +10,7 @@
 using namespace std;
 
 MovieStore::MovieStore() {
+  // initialize
   inventory = new Inventory();
   customerManager = new CustomerManager();
   transactionManager = new TransactionManager();
@@ -18,6 +19,7 @@ MovieStore::MovieStore() {
 void MovieStore::readMovie(string filename) {
   ifstream file(filename);
 
+  // go though all lines of file
   while (!file.eof()) {
     string line;
     getline(file, line);
@@ -25,6 +27,7 @@ void MovieStore::readMovie(string filename) {
     getline(ss, line, ',');
     char type = line[0];
 
+    // F, Stock, Director, Title, Year it released
     if (type == 'F') {
       string director, title;
       int stock, year;
@@ -37,7 +40,9 @@ void MovieStore::readMovie(string filename) {
       Movie movie =
           MovieFactory::createComedy(MEDIA_TYPE, stock, director, title, year);
       inventory->AddMovie("F", movie);
-    } else if (type == 'D') {
+    }
+    // D, Stock, Director, Title, Year it released
+    else if (type == 'D') {
       string director, title;
       int stock, year;
       ss.ignore();
@@ -49,7 +54,9 @@ void MovieStore::readMovie(string filename) {
       Movie movie =
           MovieFactory::createDrama(MEDIA_TYPE, stock, director, title, year);
       inventory->AddMovie("D", movie);
-    } else if (type == 'C') {
+    }
+    //  C, Stock, Director, Title, Major actor Release date
+    else if (type == 'C') {
       getline(ss, line, ',');
       int stock = stoi(line);
       ss.get();
@@ -86,6 +93,7 @@ void MovieStore::readCustomer(string filename) {
   ifstream file(filename);
   string ID, lastName, firstName;
 
+  // read all lines as: CustomerID LastName FirstName
   while (file >> ID >> firstName >> lastName) {
     try {
       int id = stoi(ID);
@@ -107,10 +115,13 @@ void MovieStore::readCommand(string filename) {
   int customerID, year, month;
   string title, actor, director;
 
+  // read all lines
   while (getline(file, line)) {
     stringstream ss(line);
     ss >> commandType;
 
+    // Borrow: B CustomerID MediaType MovieType (movie sorting attributes)
+    // Return: R CustomerID MediaType MovieType (movie sorting attributes)
     if (commandType == "B" || commandType == "R") {
       ss >> customerID >> mediaType >> movieType;
       if (customerManager->isValid(customerID) && mediaType == "D") {
@@ -161,34 +172,38 @@ void MovieStore::readCommand(string filename) {
           // Borrow or return logic for classics
           getline(ss, line, ' ');
           actor += " " + line;
-            if (commandType == "B") {
-              Transaction t = inventory->BorrowClassics(actor, customerID);
-              if (t.getID() != -1) {
-                transactionManager->addTransaction(customerID, t);
-              } else {
-                cout << "Movie does not exist, or is out of stock!" << endl;
-              }
+          if (commandType == "B") {
+            Transaction t = inventory->BorrowClassics(actor, customerID);
+            if (t.getID() != -1) {
+              transactionManager->addTransaction(customerID, t);
             } else {
-              Transaction t = inventory->ReturnClassics(actor, customerID);
-              if (t.getID() != -1) {
-                transactionManager->addTransaction(customerID, t);
-              } else {
-                cout << "Movie does not exist, or is out of stock!" << endl;
-              }
+              cout << "Movie does not exist, or is out of stock!" << endl;
             }
+          } else {
+            Transaction t = inventory->ReturnClassics(actor, customerID);
+            if (t.getID() != -1) {
+              transactionManager->addTransaction(customerID, t);
+            } else {
+              cout << "Movie does not exist, or is out of stock!" << endl;
+            }
+          }
         } else {
           cout << "customer ID not valid: " << customerID << endl;
           ss.ignore();
         }
       }
-    } else if (commandType == "I") {
+    }
+    // Inventory: I
+    else if (commandType == "I") {
       // Inventory display logic
       inventory->PrintInventory();
-    } else if (commandType == "H") {
+    }
+    // History: H CustomerID
+    else if (commandType == "H") {
       ss >> customerID;
       // History display logic
       cout << transactionManager->printTransaction(customerID);
-      
+
     } else {
       cout << "Invalid command encountered: " << commandType << endl;
       ss.ignore();

@@ -42,7 +42,7 @@ public:
   Transaction Return(const std::string &type, const std::string &title,
                      const int &id);
 
-  // return classic
+  // return classic movie
   Transaction ReturnClassics(const std::string &actor, const int &id);
 
   // add to stock
