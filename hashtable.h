@@ -1,3 +1,14 @@
+/**
+ *  hashtable class -  class used to manage how customers are stored with hashes
+ *
+ * Provides hash table for customers
+ *
+ * @author Amy Vier, Chris Chen, Hoan Nguyen Cong Pham, Kyle Ricks
+ * @date 27 May 2024
+ *
+ * Every customer has a non negative unique ID
+ */
+
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
 #include "customer.h"
@@ -5,16 +16,13 @@
 
 using namespace std;
 
-class HashTable
-{
+class HashTable {
 private:
-  struct CustomerProfile
-  {
+  struct CustomerProfile {
     int id;
     Customer customerLink;
     CustomerProfile *next;
     CustomerProfile() : id(0), customerLink(), next(nullptr){};
-    // ~CustomerProfile() :
   };
   static const int TABLE_SIZE = 12;
   CustomerProfile *table[TABLE_SIZE];

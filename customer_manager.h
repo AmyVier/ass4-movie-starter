@@ -1,3 +1,14 @@
+/**
+ *  customer manager class - class used to manage customers
+ *
+ * @author Amy Vier, Chris Chen, Hoan Nguyen Cong Pham, Kyle Ricks
+ * @date 27 May 2024
+ *
+ * The customer manager can add customers and get customers.
+ *
+ * Every customer has a non negative unique ID, a first name, and a last name
+ */
+
 #ifndef CUSTOMER_MANAGER_H
 #define CUSTOMER_MANAGER_H
 
@@ -7,16 +18,25 @@
 
 using namespace std;
 
-class CustomerManager
-{
+class CustomerManager {
 public:
-	CustomerManager();
-	~CustomerManager();
-	bool isValid(int ID);
-	Customer getCustomer(int ID);
-	bool addCustomer(int id, string firstname, string lastname);
+  // constructor
+  CustomerManager();
+
+  // destructor
+  ~CustomerManager();
+
+  // if ID is valid
+  bool isValid(int ID);
+
+  // get customer from ID
+  Customer getCustomer(int ID);
+
+  // add new customer
+  bool addCustomer(int id, string firstname, string lastname);
 
 private:
-	HashTable *CustomerList = new HashTable();
+  // list of customers
+  HashTable *CustomerList = new HashTable();
 };
 #endif
