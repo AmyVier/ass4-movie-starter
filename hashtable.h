@@ -31,6 +31,7 @@ public:
   void insert(int id, Customer customer);
 
   // Getting customer with id as key
-  Customer *get(int key);
+  Customer get(int key);
+  bool isExist(int key);
 };
 #endif

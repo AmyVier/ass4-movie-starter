@@ -1,3 +1,4 @@
+
 /**
  *  movie class - interface class used to store and manage movie data
  *
@@ -12,6 +13,7 @@
 #define MOVIE_H
 
 #include <string>
+#include <iostream>
 #include <map>
 #include "mediaFactory.h"
 #include "media.h"
@@ -29,12 +31,17 @@ public:
   virtual bool isInStock(char mediaType);
   virtual bool checkOut(char mediaType);
   virtual bool returnMovie(char mediaType);
+  virtual string getActor();
   virtual string getTitle();
+  virtual int getYear();
+  //virtual bool operator<(const Movie &);
 
 protected:
   string director;
   string title;
+  string actor;
   int releaseYear;
+  int releaseMonth;
   map<char, Media *> allStock;
 };
 

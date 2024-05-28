@@ -2,9 +2,6 @@
 #include <sstream>  // For std::stringstream
 #include <iostream> // For std::endl
 
-TransactionManager::TransactionManager()
-{
-}
 
 void TransactionManager::addTransaction(int ID, Transaction tran)
 {

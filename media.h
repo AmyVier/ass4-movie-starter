@@ -17,13 +17,17 @@ using namespace std;
 class Media
 {
 public:
-  virtual bool addTostock(int stk);
-  virtual bool isInStock();
-  virtual bool checkOut();
-  virtual bool returnMovie();
+  virtual ~Media() = default;
+  virtual bool addTostock(int stock) = 0;
+  virtual bool isInStock() const = 0;
+  virtual bool checkOut() = 0;
+  virtual bool returnMovie() = 0;
+  virtual int getBorrowed() = 0;
+  virtual int getRemained() = 0;
 
-protected:
+private:
   int stock;
+  int borrowed;
 };
 
 #endif // MEDIA_H

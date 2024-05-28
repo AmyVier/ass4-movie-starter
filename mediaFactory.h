@@ -12,6 +12,7 @@
 #define MOVIEFACTORY_H
 
 #include <string>
+#include <iostream>
 #include "dvd.h"
 
 using namespace std;
@@ -19,7 +20,7 @@ using namespace std;
 class MediaFactory
 {
 public:
-  static DVD *createDVD(int stock)
+   static DVD *createDVD(int stock)
   {
     DVD *dvd = new DVD(stock);
     return dvd;

@@ -13,7 +13,7 @@ public:
 	CustomerManager();
 	~CustomerManager();
 	bool isValid(int ID);
-	Customer *getCustomer(int ID);
+	Customer getCustomer(int ID);
 	bool addCustomer(int id, string firstname, string lastname);
 
 private:

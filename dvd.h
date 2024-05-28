@@ -18,11 +18,18 @@ using namespace std;
 class DVD : public Media
 {
 public:
+  ~DVD();
   DVD(int stock);
   bool addTostock(int stk);
-  bool isInStock();
+  bool isInStock() const;
   bool checkOut();
   bool returnMovie();
+  int getBorrowed();
+  int getRemained();
+
+private:
+  int stock;
+  int borrowed;
 };
 
 #endif // DVD_H

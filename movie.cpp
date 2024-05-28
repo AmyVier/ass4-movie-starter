@@ -1,13 +1,13 @@
 #include "movie.h"
 #include <string>
+#include <iostream>
 
 using namespace std;
 
 ostream &operator<<(ostream &out, const Movie &movie)
 {
-
-  out << movie.title;
-
+  out << movie.title << " " << movie.director << " " << movie.releaseYear << " " 
+  << movie.allStock.begin()->second->getRemained();
   return out;
 }
 
@@ -17,24 +17,27 @@ Movie::Movie(char mediaType, int stock, string director, string title,
   this->director = director;
   this->title = title;
   this->releaseYear = releaseYear;
+  
 
-  if (allStock.count(mediaType))
+  if (allStock.find(mediaType) != allStock.end())
   {
     allStock[mediaType]->addTostock(stock);
   }
   else if (mediaType == 'D')
   {
-    DVD *newDVD = MediaFactory::createDVD(stock);
+    
+    Media* newDVD = MediaFactory::createDVD(stock);
     allStock.insert(make_pair(mediaType, newDVD));
   }
 }
 
 bool Movie::addTostock(char mediaType, int stock)
 {
-  if (allStock.count(mediaType))
+  if (allStock.find(mediaType) != allStock.end())
   {
     allStock[mediaType]->addTostock(stock);
   }
+  return true;
 }
 
 bool Movie::isInStock(char mediaType)
@@ -50,6 +53,10 @@ bool Movie::isInStock(char mediaType)
 string Movie::getTitle()
 {
   return this->title;
+}
+
+int Movie::getYear(){
+  return this->releaseYear;
 }
 
 bool Movie::checkOut(char mediaType)
@@ -72,4 +79,8 @@ bool Movie::returnMovie(char mediaType)
   }
 
   return false;
+}
+
+string Movie::getActor(){
+  return actor;
 }

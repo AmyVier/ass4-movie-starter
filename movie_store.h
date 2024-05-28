@@ -6,6 +6,7 @@
 #include <string>
 
 using namespace std;
+const char MEDIA_TYPE = 'D';
 
 class MovieStore
 {

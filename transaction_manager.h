@@ -7,14 +7,13 @@
 
 using namespace std;
 
-class TransactionManager
-{
+class TransactionManager {
 public:
-	TransactionManager();
+	TransactionManager() = default;
 	void addTransaction(int ID, Transaction tran);
 	string printTransaction(int ID);
-
 private:
 	map<int, vector<Transaction>> transactions;
 };
 #endif // !TRANSACTION_MANAGER_H
+

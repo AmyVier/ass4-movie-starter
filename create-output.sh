@@ -114,7 +114,7 @@ rm ./a.out 2>/dev/null
 if hash valgrind 2>/dev/null; then
   g++ -g -std=c++11 *.cpp
   # redirect program output to /dev/null will running valgrind
-  valgrind --log-file="valgrind-output.txt" $EXEC_PROGRAM > /dev/null 2>/dev/null
+  valgrind --leak-check=full --track-origins=yes --log-file="valgrind-output.txt" $EXEC_PROGRAM > /dev/null 2>/dev/null
   cat valgrind-output.txt
   rm valgrind-output.txt 2>/dev/null
 else

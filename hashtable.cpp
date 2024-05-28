@@ -57,7 +57,7 @@ void HashTable::insert(int id, Customer customer)
 }
 
 // get customer with id as key
-Customer *HashTable::get(int key)
+Customer HashTable::get(int key)
 {
   int index = hashFunction(key);
   CustomerProfile *p = table[index];
@@ -65,9 +65,24 @@ Customer *HashTable::get(int key)
   {
     if (p->id == key)
     {
-      return &(p->customerLink);
+      return p->customerLink;
     }
     p = p->next;
   }
-  return nullptr;
+  Customer nul;
+  return nul;
+}
+
+bool HashTable::isExist(int key){
+  int index = hashFunction(key);
+  CustomerProfile *p = table[index];
+  while (p != nullptr)
+  {
+    if (p->id == key)
+    {
+      return true;
+    }
+    p = p->next;
+  }
+  return false;
 }

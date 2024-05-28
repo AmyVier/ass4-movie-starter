@@ -6,40 +6,111 @@
 #include <utility>
 #include <vector>
 #include "movie.h"
+#include "transaction.h"
+#include "transaction_manager.h"
 
 Inventory::Inventory() {
-    inventory_.insert(KeyValuePair("F", std::vector<Movie*>()));
-    inventory_.insert(KeyValuePair("D", std::vector<Movie*>()));
-    inventory_.insert(KeyValuePair("C", std::vector<Movie*>()));
+    inventory_.insert(make_pair("F", std::vector<Movie>()));
+    inventory_.insert(make_pair("D", std::vector<Movie>()));
+    inventory_.insert(make_pair("C", std::vector<Movie>()));
 }
 
-bool Inventory::AddMovie(const std::string& type, Movie* movie) {
+bool Inventory::AddMovie(const std::string& type, Movie movie) {
     if (inventory_.find(type) != inventory_.end()) {
-        inventory_.find(type)->second.push_back(movie);
-        std::sort(inventory_.find(type)->second.begin(),
-                  inventory_.find(type)->second.end());
+        auto &inventory = inventory_.find(type)->second;
+        inventory.push_back(movie);
+        if(type == "C"){
+             //sortClassics(inventory);
+        }
+        else{
+            //sort(inventory);
+        }
         return true;
     }
     return false;
 }
 
 bool Inventory::FindMovie(const std::string& type, const std::string& title) {
-    if (inventory_.find(type) != inventory_.end()) {
-        for (Movie* temp : inventory_.find(type)->second) {
-            if (temp->getTitle() == title) {
+        auto &inventory = inventory_.find(type)->second;
+        for (auto temp : inventory) {
+            if (temp.getTitle() == title) {
                 return true;
             }
         }
-    }
-    return false;
+         return false;
 }
 
-bool Inventory::addToStock(const std::string& type, const Movie* movie,
+Transaction Inventory::Borrow(const std::string& type, const std::string& title, const int& id){
+    if (inventory_.find(type) != inventory_.end()) {
+        auto &inventory = inventory_.find(type)->second;
+        for (auto temp : inventory) {
+            if (temp.getTitle() == title) {
+                temp.checkOut('D');
+                string info = temp.getTitle() + ", " + to_string(temp.getYear());
+                Transaction t = Transaction("B", id, type, info);
+                return t;
+            }
+        }
+    }
+    Transaction t = Transaction();
+    return t;
+}
+
+Transaction Inventory::BorrowClassics(const std::string& actor, const int& id){
+     if (inventory_.find("C") != inventory_.end()) {
+        auto &inventory = inventory_.find("C")->second;
+        for (auto temp : inventory) {
+            if (temp.getActor() == actor) {
+                temp.checkOut('D');
+                string info = temp.getTitle() + ", " + temp.getActor() + ", " + to_string(temp.getYear());
+                Transaction t = Transaction("B", id, "C", info);
+                return t;
+            }
+        }
+    }
+    Transaction t = Transaction();
+    return t;
+}
+
+Transaction Inventory::Return(const std::string& type, const std::string& title, const int& id){
+    if (inventory_.find(type) != inventory_.end()) {
+        auto &inventory = inventory_.find(type)->second;
+        for (auto temp : inventory) {
+            if (temp.getTitle() == title) {
+                temp.returnMovie('D');
+                string info = temp.getTitle() + ", " + to_string(temp.getYear());
+                Transaction t = Transaction("R", id, type, info);
+                return t;
+            }
+        }
+    }
+    Transaction t = Transaction();
+    return t;
+}
+
+Transaction Inventory::ReturnClassics(const std::string& actor, const int& id){
+     if (inventory_.find("C") != inventory_.end()) {
+        auto &inventory = inventory_.find("C")->second;
+        for (auto temp : inventory) {
+            if (temp.getActor() == actor) {
+                temp.returnMovie('D');
+                string info = temp.getTitle() + ", " + temp.getActor() + ", " + to_string(temp.getYear());
+                Transaction t = Transaction("R", id, "C", info);
+                return t;
+            }
+        }
+    }
+    Transaction t = Transaction();
+    return t;
+}
+
+bool Inventory::addToStock(const std::string& type, Movie movie,
                            const int& stock) {
     if (inventory_.find(type) != inventory_.end()) {
-        for (Movie* temp : inventory_.find(type)->second) {
-            if (temp == movie) {
-                temp->addTostock('D', stock);
+        auto &inventory = inventory_.find(type)->second;
+        for (Movie temp : inventory) {
+            if (temp.getTitle() == movie.getTitle()) {
+                temp.addTostock('D', stock);
                 return true;
             }
         }
@@ -54,7 +125,38 @@ void Inventory::PrintInventory() const {
 }
 
 void Inventory::PrintHelper(const std::string& type) const {
-    for (const Movie* movie : inventory_.find(type)->second) {
-        std::cout << *(movie) << "\n";
+    auto &inventory = inventory_.find(type)->second;
+    for (auto movie : inventory) {
+        std::cout << movie << "\n";
     }
+}
+
+void Inventory::sort(std::vector<Movie*>& v){
+    if(v.empty()) return;
+        for(int i = 0; i < v.size() - 1; i++){
+            int index = i;
+            for(int j = i; j < v.size(); j++){
+                if(v[j]->getTitle() < v[index]->getTitle() || (v[j]->getTitle() == v[index]->getTitle() && v[j]->getYear() < v[index]->getYear())){
+                    index = j;
+                }
+            }
+            auto temp = v[i];
+            v[i] = v[index];
+            v[index] = temp;
+        }
+}
+
+void Inventory::sortClassics(std::vector<Movie*>& v){
+    if(v.empty()) return;
+        for(int i = 0; i < v.size() - 1; i++){
+            int index = i;
+            for(int j = i; j < v.size(); j++){
+                if(v[j]->getYear() < v[index]->getYear() || (v[j]->getTitle() < v[index]->getTitle() && v[j]->getYear() == v[index]->getYear())){
+                    index = j;
+                }
+            }
+            auto temp = v[i];
+            v[i] = v[index];
+            v[index] = temp;
+        }
 }

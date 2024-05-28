@@ -9,14 +9,16 @@ using namespace std;
 class Transaction
 {
 public:
-	Transaction(string action, int ID, string movieType, Movie *movie);
+	Transaction();
+	Transaction(string action, int ID, string movieType, string info);
 	string Output();
+	int getID();
 
 private:
 	string action;
 	int CustomerID;
 	string type;
-	Movie *movie;
+	string movieInfo;
 };
 
 #endif // !TRANSACTION_H

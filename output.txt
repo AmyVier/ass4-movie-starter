@@ -1,0 +1,1051 @@
+Mon May 27 19:05:45 PDT 2024
+Linux csslab13 4.18.0-513.18.1.el8_9.x86_64 #1 SMP Wed Feb 21 21:34:36 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux
+uid=1261876(siyuanc) gid=2121261876(siyuanc) groups=2121261876(siyuanc),605559(lab-access)
+=====================================================
+1. Compiles without warnings with -Wall -Wextra flags
+=====================================================
+=====================================================
+2. Runs and produces correct output
+=====================================================
+Invalid movie type encountered: Z
+Invalid movie type encountered: Z
+movie input complete! 
+customer input complete! 
+Movie does not exist, or is out of stock!
+Movie does not exist, or is out of stock!
+Movie does not exist, or is out of stock!
+Invalid command encountered: Z
+command input complete! 
+Done.
+=====================================================
+3. clang-tidy warnings are fixed
+=====================================================
+1 warning generated.
+1 warning generated.
+1 warning generated.
+2 warnings generated.
+2 warnings generated.
+2 warnings generated.
+2 warnings generated.
+2 warnings generated.
+2 warnings generated.
+2 warnings generated.
+2 warnings generated.
+2 warnings generated.
+2 warnings generated.
+/home/NETID/siyuanc/ass4-movie-starter-master/customer.cpp:25:17: warning: adding 'int' to a string does not append to the string [clang-diagnostic-string-plus-int]
+        return getID() + " " + getFirstName() + " " + getLastName();
+               ~~~~~~~~^~~~~
+/home/NETID/siyuanc/ass4-movie-starter-master/customer.cpp:25:17: note: use array indexing to silence this warning
+/home/NETID/siyuanc/ass4-movie-starter-master/dvd.cpp:13:1: warning: Attempt to delete released memory [clang-analyzer-cplusplus.NewDelete]
+}
+^
+/home/NETID/siyuanc/ass4-movie-starter-master/dvd.cpp:12:2: note: Memory is released
+        delete this;
+        ^~~~~~~~~~~
+/home/NETID/siyuanc/ass4-movie-starter-master/dvd.cpp:13:1: note: Attempt to delete released memory
+}
+^
+=====================================================
+4. clang-format does not find any formatting issues
+=====================================================
+Running clang-format on ./classics.cpp
+6,9c6,7
+< bool Classics::operator<(const Classics &other) const
+< {
+<   if (this->releaseYear < other.releaseYear)
+<   {
+---
+> bool Classics::operator<(const Classics &other) const {
+>   if (this->releaseYear < other.releaseYear) {
+11,13c9,10
+<   }
+<   else if ((this->releaseYear == other.releaseYear) && (this->releaseMonth < other.releaseMonth))
+<   {
+---
+>   } else if ((this->releaseYear == other.releaseYear) &&
+>              (this->releaseMonth < other.releaseMonth)) {
+15,17c12,14
+<   }
+<   else if ((this->releaseYear == other.releaseYear) && (this->releaseMonth == other.releaseMonth) && (this->majorActor < other.majorActor))
+<   {
+---
+>   } else if ((this->releaseYear == other.releaseYear) &&
+>              (this->releaseMonth == other.releaseMonth) &&
+>              (this->majorActor < other.majorActor)) {
+19,21c16
+<   }
+<   else
+<   {
+---
+>   } else {
+26,29c21,22
+< bool Classics::operator>(const Classics &other) const
+< {
+<   if (this->releaseYear > other.releaseYear)
+<   {
+---
+> bool Classics::operator>(const Classics &other) const {
+>   if (this->releaseYear > other.releaseYear) {
+31,33c24,25
+<   }
+<   else if ((this->releaseYear == other.releaseYear) && (this->releaseMonth > other.releaseMonth))
+<   {
+---
+>   } else if ((this->releaseYear == other.releaseYear) &&
+>              (this->releaseMonth > other.releaseMonth)) {
+35,37c27,29
+<   }
+<   else if ((this->releaseYear == other.releaseYear) && (this->releaseMonth == other.releaseMonth) && (this->majorActor > other.majorActor))
+<   {
+---
+>   } else if ((this->releaseYear == other.releaseYear) &&
+>              (this->releaseMonth == other.releaseMonth) &&
+>              (this->majorActor > other.majorActor)) {
+39,41c31
+<   }
+<   else
+<   {
+---
+>   } else {
+46,49c36,39
+< bool Classics::operator==(const Classics &other) const
+< {
+<   if ((this->releaseYear == other.releaseYear) && (this->releaseMonth == other.releaseMonth) && (this->majorActor > other.majorActor))
+<   {
+---
+> bool Classics::operator==(const Classics &other) const {
+>   if ((this->releaseYear == other.releaseYear) &&
+>       (this->releaseMonth == other.releaseMonth) &&
+>       (this->majorActor > other.majorActor)) {
+51,53c41
+<   }
+<   else
+<   {
+---
+>   } else {
+Running clang-format on ./comedy.cpp
+7,10c7,8
+< bool Comedy::operator<(const Comedy &other) const
+< {
+<   if (this->title < other.title)
+<   {
+---
+> bool Comedy::operator<(const Comedy &other) const {
+>   if (this->title < other.title) {
+12,14c10,11
+<   }
+<   else if ((this->title == other.title) && (this->releaseYear < other.releaseYear))
+<   {
+---
+>   } else if ((this->title == other.title) &&
+>              (this->releaseYear < other.releaseYear)) {
+16,18c13
+<   }
+<   else
+<   {
+---
+>   } else {
+23,26c18,19
+< bool Comedy::operator>(const Comedy &other) const
+< {
+<   if (this->title > other.title)
+<   {
+---
+> bool Comedy::operator>(const Comedy &other) const {
+>   if (this->title > other.title) {
+28,30c21,22
+<   }
+<   else if ((this->title == other.title) && (this->releaseYear > other.releaseYear))
+<   {
+---
+>   } else if ((this->title == other.title) &&
+>              (this->releaseYear > other.releaseYear)) {
+32,34c24
+<   }
+<   else
+<   {
+---
+>   } else {
+39,42c29,31
+< bool Comedy::operator==(const Comedy &other) const
+< {
+<   if ((this->title == other.title) && (this->releaseYear == other.releaseYear))
+<   {
+---
+> bool Comedy::operator==(const Comedy &other) const {
+>   if ((this->title == other.title) &&
+>       (this->releaseYear == other.releaseYear)) {
+44,46c33
+<   }
+<   else
+<   {
+---
+>   } else {
+Running clang-format on ./customer.cpp
+1d0
+< #include <string>
+2a2
+> #include <string>
+5c5,6
+< Customer::Customer(int id, string firstname, string lastname) : ID(id), firstName(firstname), lastName(lastname) {}
+---
+> Customer::Customer(int id, string firstname, string lastname)
+>     : ID(id), firstName(firstname), lastName(lastname) {}
+7,10c8
+< int Customer::getID() const
+< {
+< 	return ID;
+< }
+---
+> int Customer::getID() const { return ID; }
+12,15c10
+< string Customer::getFirstName() const
+< {
+< 	return firstName;
+< }
+---
+> string Customer::getFirstName() const { return firstName; }
+17,20c12
+< string Customer::getLastName() const
+< {
+< 	return lastName;
+< }
+---
+> string Customer::getLastName() const { return lastName; }
+23,25c15,16
+< string Customer::getAllInfo() const
+< {
+< 	return getID() + " " + getFirstName() + " " + getLastName();
+---
+> string Customer::getAllInfo() const {
+>   return getID() + " " + getFirstName() + " " + getLastName();
+Running clang-format on ./customer_manager.cpp
+0a1
+> #include "customer_manager.h"
+3d3
+< #include "customer_manager.h"
+7,11c7,8
+< //Need to check if sufficiently detected, likely to cause memory leaks.
+< CustomerManager::~CustomerManager() {
+< 	delete CustomerList;
+< }
+< 
+---
+> // Need to check if sufficiently detected, likely to cause memory leaks.
+> CustomerManager::~CustomerManager() { delete CustomerList; }
+14,17c11,14
+< 	if (!CustomerList->isExist(ID)) {
+< 		return false;
+< 	}
+< 	return true;
+---
+>   if (!CustomerList->isExist(ID)) {
+>     return false;
+>   }
+>   return true;
+20,23c17,18
+< //if not found, return nullptr;
+< Customer CustomerManager::getCustomer(int ID) {
+< 	return CustomerList->get(ID);
+< }
+---
+> // if not found, return nullptr;
+> Customer CustomerManager::getCustomer(int ID) { return CustomerList->get(ID); }
+25c20
+< //using hash function:
+---
+> // using hash function:
+27,32c22,27
+< 	//if (CustomerList->get(id).getID() != id) {
+< 		Customer c = Customer(id, firstname, lastname);
+< 		CustomerList->insert(id, c);
+< 		return true;
+< 	//}
+< 	//return false;
+---
+>   // if (CustomerList->get(id).getID() != id) {
+>   Customer c = Customer(id, firstname, lastname);
+>   CustomerList->insert(id, c);
+>   return true;
+>   //}
+>   // return false;
+Running clang-format on ./drama.cpp
+6,9c6,7
+< bool Drama::operator<(const Drama &other) const
+< {
+<   if (this->director < other.director)
+<   {
+---
+> bool Drama::operator<(const Drama &other) const {
+>   if (this->director < other.director) {
+11,13c9,10
+<   }
+<   else if ((this->director == other.director) && (this->title < other.title))
+<   {
+---
+>   } else if ((this->director == other.director) &&
+>              (this->title < other.title)) {
+15,17c12
+<   }
+<   else
+<   {
+---
+>   } else {
+22,25c17,18
+< bool Drama::operator>(const Drama &other) const
+< {
+<   if (this->director < other.director)
+<   {
+---
+> bool Drama::operator>(const Drama &other) const {
+>   if (this->director < other.director) {
+27,29c20,21
+<   }
+<   else if ((this->director == other.director) && (this->title > other.title))
+<   {
+---
+>   } else if ((this->director == other.director) &&
+>              (this->title > other.title)) {
+31,33c23
+<   }
+<   else
+<   {
+---
+>   } else {
+38,41c28,29
+< bool Drama::operator==(const Drama &other) const
+< {
+<   if ((this->director == other.director) && (this->title > other.title))
+<   {
+---
+> bool Drama::operator==(const Drama &other) const {
+>   if ((this->director == other.director) && (this->title > other.title)) {
+43,45c31
+<   }
+<   else
+<   {
+---
+>   } else {
+Running clang-format on ./dvd.cpp
+4,8c4,7
+< //constructor with stock provided
+< DVD::DVD(int stock)
+< {
+< 	this->stock = stock;
+< 	borrowed = 0;
+---
+> // constructor with stock provided
+> DVD::DVD(int stock) {
+>   this->stock = stock;
+>   borrowed = 0;
+11,19c10,16
+< DVD::~DVD(){
+< 	delete this;
+< }
+< 
+< // add additional stock, might be proposed for other usage but keep it this way for now.
+< bool DVD::addTostock(int stk)
+< {
+< 	stock += stk;
+< 	return true;
+---
+> DVD::~DVD() { delete this; }
+> 
+> // add additional stock, might be proposed for other usage but keep it this way
+> // for now.
+> bool DVD::addTostock(int stk) {
+>   stock += stk;
+>   return true;
+23,26c20
+< bool DVD::isInStock() const
+< {
+< 	return (stock >= borrowed);
+< }
+---
+> bool DVD::isInStock() const { return (stock >= borrowed); }
+29,33c23,27
+< bool DVD::checkOut()
+< {
+< 	if (borrowed >= stock) return false;
+< 	borrowed++;
+< 	return true;
+---
+> bool DVD::checkOut() {
+>   if (borrowed >= stock)
+>     return false;
+>   borrowed++;
+>   return true;
+37,41c31,35
+< bool DVD::returnMovie()
+< {
+< 	if(borrowed <= 0) return false;
+< 	borrowed--;
+< 	return true;
+---
+> bool DVD::returnMovie() {
+>   if (borrowed <= 0)
+>     return false;
+>   borrowed--;
+>   return true;
+44,46c38
+< int DVD::getBorrowed(){
+< 	return borrowed;
+< }
+---
+> int DVD::getBorrowed() { return borrowed; }
+48,50c40
+< int DVD::getRemained(){
+< 	return stock - borrowed;
+< }
+\ No newline at end of file
+---
+> int DVD::getRemained() { return stock - borrowed; }
+\ No newline at end of file
+Running clang-format on ./hashtable.cpp
+6,9c6,7
+< HashTable::HashTable()
+< {
+<   for (size_t i = 0; i < TABLE_SIZE; i++)
+<   {
+---
+> HashTable::HashTable() {
+>   for (size_t i = 0; i < TABLE_SIZE; i++) {
+16,19c14,15
+< HashTable::~HashTable()
+< {
+<   for (int i = 0; i < TABLE_SIZE; ++i)
+<   {
+---
+> HashTable::~HashTable() {
+>   for (int i = 0; i < TABLE_SIZE; ++i) {
+21,22c17
+<     while (p != nullptr)
+<     {
+---
+>     while (p != nullptr) {
+35,36c30
+< void HashTable::insert(int id, Customer customer)
+< {
+---
+> void HashTable::insert(int id, Customer customer) {
+39,40c33
+<   if (table[index]->id == 0)
+<   {
+---
+>   if (table[index]->id == 0) {
+43,45c36
+<   }
+<   else
+<   {
+---
+>   } else {
+51,52c42
+<     while (p->next != nullptr)
+<     {
+---
+>     while (p->next != nullptr) {
+60,61c50
+< Customer HashTable::get(int key)
+< {
+---
+> Customer HashTable::get(int key) {
+64,67c53,54
+<   while (p != nullptr)
+<   {
+<     if (p->id == key)
+<     {
+---
+>   while (p != nullptr) {
+>     if (p->id == key) {
+76c63
+< bool HashTable::isExist(int key){
+---
+> bool HashTable::isExist(int key) {
+79,82c66,67
+<   while (p != nullptr)
+<   {
+<     if (p->id == key)
+<     {
+---
+>   while (p != nullptr) {
+>     if (p->id == key) {
+Running clang-format on ./inventory.cpp
+1a2,4
+> #include "movie.h"
+> #include "transaction.h"
+> #include "transaction_manager.h"
+8,10d10
+< #include "movie.h"
+< #include "transaction.h"
+< #include "transaction_manager.h"
+13,15c13,15
+<     inventory_.insert(make_pair("F", std::vector<Movie>()));
+<     inventory_.insert(make_pair("D", std::vector<Movie>()));
+<     inventory_.insert(make_pair("C", std::vector<Movie>()));
+---
+>   inventory_.insert(make_pair("F", std::vector<Movie>()));
+>   inventory_.insert(make_pair("D", std::vector<Movie>()));
+>   inventory_.insert(make_pair("C", std::vector<Movie>()));
+18,27c18,116
+< bool Inventory::AddMovie(const std::string& type, Movie movie) {
+<     if (inventory_.find(type) != inventory_.end()) {
+<         auto &inventory = inventory_.find(type)->second;
+<         inventory.push_back(movie);
+<         if(type == "C"){
+<              //sortClassics(inventory);
+<         }
+<         else{
+<             //sort(inventory);
+<         }
+---
+> bool Inventory::AddMovie(const std::string &type, Movie movie) {
+>   if (inventory_.find(type) != inventory_.end()) {
+>     auto &inventory = inventory_.find(type)->second;
+>     inventory.push_back(movie);
+>     if (type == "C") {
+>       // sortClassics(inventory);
+>     } else {
+>       // sort(inventory);
+>     }
+>     return true;
+>   }
+>   return false;
+> }
+> 
+> bool Inventory::FindMovie(const std::string &type, const std::string &title) {
+>   auto &inventory = inventory_.find(type)->second;
+>   for (auto temp : inventory) {
+>     if (temp.getTitle() == title) {
+>       return true;
+>     }
+>   }
+>   return false;
+> }
+> 
+> Transaction Inventory::Borrow(const std::string &type, const std::string &title,
+>                               const int &id) {
+>   if (inventory_.find(type) != inventory_.end()) {
+>     auto &inventory = inventory_.find(type)->second;
+>     for (auto temp : inventory) {
+>       if (temp.getTitle() == title) {
+>         temp.checkOut('D');
+>         string info = temp.getTitle() + ", " + to_string(temp.getYear());
+>         Transaction t = Transaction("B", id, type, info);
+>         return t;
+>       }
+>     }
+>   }
+>   Transaction t = Transaction();
+>   return t;
+> }
+> 
+> Transaction Inventory::BorrowClassics(const std::string &actor, const int &id) {
+>   if (inventory_.find("C") != inventory_.end()) {
+>     auto &inventory = inventory_.find("C")->second;
+>     for (auto temp : inventory) {
+>       if (temp.getActor() == actor) {
+>         temp.checkOut('D');
+>         string info = temp.getTitle() + ", " + temp.getActor() + ", " +
+>                       to_string(temp.getYear());
+>         Transaction t = Transaction("B", id, "C", info);
+>         return t;
+>       }
+>     }
+>   }
+>   Transaction t = Transaction();
+>   return t;
+> }
+> 
+> Transaction Inventory::Return(const std::string &type, const std::string &title,
+>                               const int &id) {
+>   if (inventory_.find(type) != inventory_.end()) {
+>     auto &inventory = inventory_.find(type)->second;
+>     for (auto temp : inventory) {
+>       if (temp.getTitle() == title) {
+>         temp.returnMovie('D');
+>         string info = temp.getTitle() + ", " + to_string(temp.getYear());
+>         Transaction t = Transaction("R", id, type, info);
+>         return t;
+>       }
+>     }
+>   }
+>   Transaction t = Transaction();
+>   return t;
+> }
+> 
+> Transaction Inventory::ReturnClassics(const std::string &actor, const int &id) {
+>   if (inventory_.find("C") != inventory_.end()) {
+>     auto &inventory = inventory_.find("C")->second;
+>     for (auto temp : inventory) {
+>       if (temp.getActor() == actor) {
+>         temp.returnMovie('D');
+>         string info = temp.getTitle() + ", " + temp.getActor() + ", " +
+>                       to_string(temp.getYear());
+>         Transaction t = Transaction("R", id, "C", info);
+>         return t;
+>       }
+>     }
+>   }
+>   Transaction t = Transaction();
+>   return t;
+> }
+> 
+> bool Inventory::addToStock(const std::string &type, Movie movie,
+>                            const int &stock) {
+>   if (inventory_.find(type) != inventory_.end()) {
+>     auto &inventory = inventory_.find(type)->second;
+>     for (Movie temp : inventory) {
+>       if (temp.getTitle() == movie.getTitle()) {
+>         temp.addTostock('D', stock);
+28a118
+>       }
+30,118c120,121
+<     return false;
+< }
+< 
+< bool Inventory::FindMovie(const std::string& type, const std::string& title) {
+<         auto &inventory = inventory_.find(type)->second;
+<         for (auto temp : inventory) {
+<             if (temp.getTitle() == title) {
+<                 return true;
+<             }
+<         }
+<          return false;
+< }
+< 
+< Transaction Inventory::Borrow(const std::string& type, const std::string& title, const int& id){
+<     if (inventory_.find(type) != inventory_.end()) {
+<         auto &inventory = inventory_.find(type)->second;
+<         for (auto temp : inventory) {
+<             if (temp.getTitle() == title) {
+<                 temp.checkOut('D');
+<                 string info = temp.getTitle() + ", " + to_string(temp.getYear());
+<                 Transaction t = Transaction("B", id, type, info);
+<                 return t;
+<             }
+<         }
+<     }
+<     Transaction t = Transaction();
+<     return t;
+< }
+< 
+< Transaction Inventory::BorrowClassics(const std::string& actor, const int& id){
+<      if (inventory_.find("C") != inventory_.end()) {
+<         auto &inventory = inventory_.find("C")->second;
+<         for (auto temp : inventory) {
+<             if (temp.getActor() == actor) {
+<                 temp.checkOut('D');
+<                 string info = temp.getTitle() + ", " + temp.getActor() + ", " + to_string(temp.getYear());
+<                 Transaction t = Transaction("B", id, "C", info);
+<                 return t;
+<             }
+<         }
+<     }
+<     Transaction t = Transaction();
+<     return t;
+< }
+< 
+< Transaction Inventory::Return(const std::string& type, const std::string& title, const int& id){
+<     if (inventory_.find(type) != inventory_.end()) {
+<         auto &inventory = inventory_.find(type)->second;
+<         for (auto temp : inventory) {
+<             if (temp.getTitle() == title) {
+<                 temp.returnMovie('D');
+<                 string info = temp.getTitle() + ", " + to_string(temp.getYear());
+<                 Transaction t = Transaction("R", id, type, info);
+<                 return t;
+<             }
+<         }
+<     }
+<     Transaction t = Transaction();
+<     return t;
+< }
+< 
+< Transaction Inventory::ReturnClassics(const std::string& actor, const int& id){
+<      if (inventory_.find("C") != inventory_.end()) {
+<         auto &inventory = inventory_.find("C")->second;
+<         for (auto temp : inventory) {
+<             if (temp.getActor() == actor) {
+<                 temp.returnMovie('D');
+<                 string info = temp.getTitle() + ", " + temp.getActor() + ", " + to_string(temp.getYear());
+<                 Transaction t = Transaction("R", id, "C", info);
+<                 return t;
+<             }
+<         }
+<     }
+<     Transaction t = Transaction();
+<     return t;
+< }
+< 
+< bool Inventory::addToStock(const std::string& type, Movie movie,
+<                            const int& stock) {
+<     if (inventory_.find(type) != inventory_.end()) {
+<         auto &inventory = inventory_.find(type)->second;
+<         for (Movie temp : inventory) {
+<             if (temp.getTitle() == movie.getTitle()) {
+<                 temp.addTostock('D', stock);
+<                 return true;
+<             }
+<         }
+<     }
+<     return false;
+---
+>   }
+>   return false;
+122,161c125,170
+<     PrintHelper("F");
+<     PrintHelper("D");
+<     PrintHelper("C");
+< }
+< 
+< void Inventory::PrintHelper(const std::string& type) const {
+<     auto &inventory = inventory_.find(type)->second;
+<     for (auto movie : inventory) {
+<         std::cout << movie << "\n";
+<     }
+< }
+< 
+< void Inventory::sort(std::vector<Movie*>& v){
+<     if(v.empty()) return;
+<         for(int i = 0; i < v.size() - 1; i++){
+<             int index = i;
+<             for(int j = i; j < v.size(); j++){
+<                 if(v[j]->getTitle() < v[index]->getTitle() || (v[j]->getTitle() == v[index]->getTitle() && v[j]->getYear() < v[index]->getYear())){
+<                     index = j;
+<                 }
+<             }
+<             auto temp = v[i];
+<             v[i] = v[index];
+<             v[index] = temp;
+<         }
+< }
+< 
+< void Inventory::sortClassics(std::vector<Movie*>& v){
+<     if(v.empty()) return;
+<         for(int i = 0; i < v.size() - 1; i++){
+<             int index = i;
+<             for(int j = i; j < v.size(); j++){
+<                 if(v[j]->getYear() < v[index]->getYear() || (v[j]->getTitle() < v[index]->getTitle() && v[j]->getYear() == v[index]->getYear())){
+<                     index = j;
+<                 }
+<             }
+<             auto temp = v[i];
+<             v[i] = v[index];
+<             v[index] = temp;
+<         }
+---
+>   PrintHelper("F");
+>   PrintHelper("D");
+>   PrintHelper("C");
+> }
+> 
+> void Inventory::PrintHelper(const std::string &type) const {
+>   auto &inventory = inventory_.find(type)->second;
+>   for (auto movie : inventory) {
+>     std::cout << movie << "\n";
+>   }
+> }
+> 
+> void Inventory::sort(std::vector<Movie *> &v) {
+>   if (v.empty())
+>     return;
+>   for (int i = 0; i < v.size() - 1; i++) {
+>     int index = i;
+>     for (int j = i; j < v.size(); j++) {
+>       if (v[j]->getTitle() < v[index]->getTitle() ||
+>           (v[j]->getTitle() == v[index]->getTitle() &&
+>            v[j]->getYear() < v[index]->getYear())) {
+>         index = j;
+>       }
+>     }
+>     auto temp = v[i];
+>     v[i] = v[index];
+>     v[index] = temp;
+>   }
+> }
+> 
+> void Inventory::sortClassics(std::vector<Movie *> &v) {
+>   if (v.empty())
+>     return;
+>   for (int i = 0; i < v.size() - 1; i++) {
+>     int index = i;
+>     for (int j = i; j < v.size(); j++) {
+>       if (v[j]->getYear() < v[index]->getYear() ||
+>           (v[j]->getTitle() < v[index]->getTitle() &&
+>            v[j]->getYear() == v[index]->getYear())) {
+>         index = j;
+>       }
+>     }
+>     auto temp = v[i];
+>     v[i] = v[index];
+>     v[index] = temp;
+>   }
+Running clang-format on ./main.cpp
+7,8c7
+< void test1()
+< {
+---
+> void test1() {
+18,19c17
+< int main()
+< {
+---
+> int main() {
+Running clang-format on ./movie.cpp
+2d1
+< #include <string>
+3a3
+> #include <string>
+7,10c7,9
+< ostream &operator<<(ostream &out, const Movie &movie)
+< {
+<   out << movie.title << " " << movie.director << " " << movie.releaseYear << " " 
+<   << movie.allStock.begin()->second->getRemained();
+---
+> ostream &operator<<(ostream &out, const Movie &movie) {
+>   out << movie.title << " " << movie.director << " " << movie.releaseYear << " "
+>       << movie.allStock.begin()->second->getRemained();
+15,16c14
+<              int releaseYear)
+< {
+---
+>              int releaseYear) {
+20d17
+<   
+22,23c19
+<   if (allStock.find(mediaType) != allStock.end())
+<   {
+---
+>   if (allStock.find(mediaType) != allStock.end()) {
+25,29c21,23
+<   }
+<   else if (mediaType == 'D')
+<   {
+<     
+<     Media* newDVD = MediaFactory::createDVD(stock);
+---
+>   } else if (mediaType == 'D') {
+> 
+>     Media *newDVD = MediaFactory::createDVD(stock);
+34,37c28,29
+< bool Movie::addTostock(char mediaType, int stock)
+< {
+<   if (allStock.find(mediaType) != allStock.end())
+<   {
+---
+> bool Movie::addTostock(char mediaType, int stock) {
+>   if (allStock.find(mediaType) != allStock.end()) {
+43,46c35,36
+< bool Movie::isInStock(char mediaType)
+< {
+<   if (allStock.count(mediaType) && allStock[mediaType]->isInStock())
+<   {
+---
+> bool Movie::isInStock(char mediaType) {
+>   if (allStock.count(mediaType) && allStock[mediaType]->isInStock()) {
+53,56c43
+< string Movie::getTitle()
+< {
+<   return this->title;
+< }
+---
+> string Movie::getTitle() { return this->title; }
+58,60c45
+< int Movie::getYear(){
+<   return this->releaseYear;
+< }
+---
+> int Movie::getYear() { return this->releaseYear; }
+62,65c47,48
+< bool Movie::checkOut(char mediaType)
+< {
+<   if (allStock.count(mediaType) && allStock[mediaType]->isInStock())
+<   {
+---
+> bool Movie::checkOut(char mediaType) {
+>   if (allStock.count(mediaType) && allStock[mediaType]->isInStock()) {
+73,76c56,57
+< bool Movie::returnMovie(char mediaType)
+< {
+<   if (allStock.count(mediaType))
+<   {
+---
+> bool Movie::returnMovie(char mediaType) {
+>   if (allStock.count(mediaType)) {
+84,86c65
+< string Movie::getActor(){
+<   return actor;
+< }
+\ No newline at end of file
+---
+> string Movie::getActor() { return actor; }
+\ No newline at end of file
+Running clang-format on ./movie_store.cpp
+164,170c164,167
+<             if (commandType == "B") {
+<               Transaction t = inventory->BorrowClassics(actor, customerID);
+<               if (t.getID() != -1) {
+<                 transactionManager->addTransaction(customerID, t);
+<               } else {
+<                 cout << "Movie does not exist, or is out of stock!" << endl;
+<               }
+---
+>           if (commandType == "B") {
+>             Transaction t = inventory->BorrowClassics(actor, customerID);
+>             if (t.getID() != -1) {
+>               transactionManager->addTransaction(customerID, t);
+172,177c169
+<               Transaction t = inventory->ReturnClassics(actor, customerID);
+<               if (t.getID() != -1) {
+<                 transactionManager->addTransaction(customerID, t);
+<               } else {
+<                 cout << "Movie does not exist, or is out of stock!" << endl;
+<               }
+---
+>               cout << "Movie does not exist, or is out of stock!" << endl;
+178a171,178
+>           } else {
+>             Transaction t = inventory->ReturnClassics(actor, customerID);
+>             if (t.getID() != -1) {
+>               transactionManager->addTransaction(customerID, t);
+>             } else {
+>               cout << "Movie does not exist, or is out of stock!" << endl;
+>             }
+>           }
+191c191
+<       
+---
+> 
+Running clang-format on ./store_test.cpp
+7a8,9
+> #include <cassert>
+> #include <fstream>
+11,12d12
+< #include <fstream>
+< #include <cassert>
+Running clang-format on ./test.cpp
+Running clang-format on ./transaction.cpp
+5,10c5,11
+< 
+< Transaction::Transaction(std::string action, int ID, std::string movieType, string info) : action(action), CustomerID(ID), type(movieType), movieInfo(info) {};
+< Transaction::Transaction(){
+<     action = "";
+<     CustomerID = -1;
+<     type = "";
+---
+> Transaction::Transaction(std::string action, int ID, std::string movieType,
+>                          string info)
+>     : action(action), CustomerID(ID), type(movieType), movieInfo(info){};
+> Transaction::Transaction() {
+>   action = "";
+>   CustomerID = -1;
+>   type = "";
+12,13c13
+< std::string Transaction::Output()
+< {
+---
+> std::string Transaction::Output() {
+15c15,16
+<   ss << "Action: " << action << ", CustomerID: " << CustomerID << ", Movie Type: " << type << ", " << movieInfo;
+---
+>   ss << "Action: " << action << ", CustomerID: " << CustomerID
+>      << ", Movie Type: " << type << ", " << movieInfo;
+19,21c20
+< int Transaction::getID(){
+<     return CustomerID;
+< }
+\ No newline at end of file
+---
+> int Transaction::getID() { return CustomerID; }
+\ No newline at end of file
+Running clang-format on ./transactionManager.cpp
+2d1
+< #include <sstream>  // For std::stringstream
+3a3
+> #include <sstream>  // For std::stringstream
+5,7c5
+< 
+< void TransactionManager::addTransaction(int ID, Transaction tran)
+< {
+---
+> void TransactionManager::addTransaction(int ID, Transaction tran) {
+11,12c9
+< std::string TransactionManager::printTransaction(int ID)
+< {
+---
+> std::string TransactionManager::printTransaction(int ID) {
+14,17c11,12
+<   if (transactions.find(ID) != transactions.end())
+<   {
+<     for (auto &tran : transactions[ID])
+<     {
+---
+>   if (transactions.find(ID) != transactions.end()) {
+>     for (auto &tran : transactions[ID]) {
+=====================================================
+5. No memory leaks using g++
+=====================================================
+=====================================================
+6. No memory leaks using valgrind, look for "definitely lost" 
+=====================================================
+==3126718== Memcheck, a memory error detector
+==3126718== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==3126718== Using Valgrind-3.21.0 and LibVEX; rerun with -h for copyright info
+==3126718== Command: ./a.out
+==3126718== Parent PID: 3126518
+==3126718== 
+==3126718== 
+==3126718== HEAP SUMMARY:
+==3126718==     in use at exit: 720 bytes in 30 blocks
+==3126718==   total heap usage: 533 allocs, 503 frees, 131,592 bytes allocated
+==3126718== 
+==3126718== 192 bytes in 8 blocks are definitely lost in loss record 1 of 3
+==3126718==    at 0x4C38913: operator new(unsigned long) (vg_replace_malloc.c:472)
+==3126718==    by 0x40A445: MediaFactory::createDVD(int) (mediaFactory.h:25)
+==3126718==    by 0x40A0C7: Movie::Movie(char, int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int) (movie.cpp:29)
+==3126718==    by 0x40DA88: Comedy::Comedy(char, int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int) (comedy.h:23)
+==3126718==    by 0x40DD89: MovieFactory::createComedy(char, int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int) (movieFactory.h:23)
+==3126718==    by 0x40C053: MovieStore::readMovie(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (movie_store.cpp:38)
+==3126718==    by 0x409C9F: test1() (main.cpp:10)
+==3126718==    by 0x409E59: main (main.cpp:20)
+==3126718== 
+==3126718== 192 bytes in 8 blocks are definitely lost in loss record 2 of 3
+==3126718==    at 0x4C38913: operator new(unsigned long) (vg_replace_malloc.c:472)
+==3126718==    by 0x40A445: MediaFactory::createDVD(int) (mediaFactory.h:25)
+==3126718==    by 0x40A0C7: Movie::Movie(char, int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int) (movie.cpp:29)
+==3126718==    by 0x40DC76: Drama::Drama(char, int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int) (drama.h:16)
+==3126718==    by 0x40DEC1: MovieFactory::createDrama(char, int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int) (movieFactory.h:28)
+==3126718==    by 0x40C250: MovieStore::readMovie(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (movie_store.cpp:50)
+==3126718==    by 0x409C9F: test1() (main.cpp:10)
+==3126718==    by 0x409E59: main (main.cpp:20)
+==3126718== 
+==3126718== 336 bytes in 14 blocks are definitely lost in loss record 3 of 3
+==3126718==    at 0x4C38913: operator new(unsigned long) (vg_replace_malloc.c:472)
+==3126718==    by 0x40A445: MediaFactory::createDVD(int) (mediaFactory.h:25)
+==3126718==    by 0x40A0C7: Movie::Movie(char, int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int) (movie.cpp:29)
+==3126718==    by 0x40DB4C: Classics::Classics(char, int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, int) (classics.h:24)
+==3126718==    by 0x40E020: MovieFactory::createClassics(char, int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, int) (movieFactory.h:34)
+==3126718==    by 0x40C5E3: MovieStore::readMovie(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (movie_store.cpp:76)
+==3126718==    by 0x409C9F: test1() (main.cpp:10)
+==3126718==    by 0x409E59: main (main.cpp:20)
+==3126718== 
+==3126718== LEAK SUMMARY:
+==3126718==    definitely lost: 720 bytes in 30 blocks
+==3126718==    indirectly lost: 0 bytes in 0 blocks
+==3126718==      possibly lost: 0 bytes in 0 blocks
+==3126718==    still reachable: 0 bytes in 0 blocks
+==3126718==         suppressed: 0 bytes in 0 blocks
+==3126718== 
+==3126718== For lists of detected and suppressed errors, rerun with: -s
+==3126718== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 0 from 0)
+=====================================================
+7. Tests have full code coverage
+=====================================================
+./create-output.sh: line 129: ./check-code-coverage.sh: Permission denied
+Mon May 27 19:06:13 PDT 2024
+=====================================================
+To create an output.txt file with all the output from this script
+Run the below command
+      ./create-output.sh > output.txt 2>&1 
+=====================================================
