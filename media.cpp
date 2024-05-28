@@ -8,7 +8,7 @@ bool Media::addTostock(int stk)
   stock += stk;
   return true;
 }
-bool Media::isInStock()
+bool Media::isInStock() const
 {
   return (stock != 0);
 }
